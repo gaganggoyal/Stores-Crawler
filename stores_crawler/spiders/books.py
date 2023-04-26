@@ -1,5 +1,7 @@
 import os
 import glob
+import csv
+from openpyxl import Workbook
 from scrapy import Spider
 from scrapy.http import Request
 
@@ -62,7 +64,22 @@ class BooksSpider(Spider):
             'number_of_reviews': number_of_reviews
 
         }
+
     
+    # # function to convert name of csv
+    # def close(self, reason):
+    #      csv_file = max(glob.iglob('*.csv'), key=os.path.getctime)
+    #      os.rename(csv_file, 'foobar.csv')
+        
+    # function to convert csv to excel
     def close(self, reason):
          csv_file = max(glob.iglob('*.csv'), key=os.path.getctime)
-         os.rename(csv_file, 'foobar.csv')
+
+         wb = Workbook()
+         ws = wb.active
+
+         with open(csv_file, 'r') as f:
+              for row in csv.reader(f):
+                   ws.append(row)
+         wb.save(csv_file.replace('.csv', '') + '.xlsx')
+
