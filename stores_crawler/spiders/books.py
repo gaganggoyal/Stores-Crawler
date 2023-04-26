@@ -7,7 +7,10 @@ def product_info(response, value):
 class BooksSpider(Spider):
     name = "books"
     allowed_domains = ["books.toscrape.com"]
-    start_urls = ["http://books.toscrape.com/"]
+    # start_urls = ["http://books.toscrape.com/"]
+
+    def __init__(self, category):
+         self.start_urls = [category]
 
     def parse(self, response):
 
