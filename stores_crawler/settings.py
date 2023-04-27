@@ -62,9 +62,11 @@ ROBOTSTXT_OBEY = False
 
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    "stores_crawler.pipelines.StoresCrawlerPipeline": 300,
-#}
+ITEM_PIPELINES = {
+  # "stores_crawler.pipelines.StoresCrawlerPipeline": 300,
+  "scrapy.pipelines.images.ImagesPipeline": 1,
+}
+IMAGES_STORE = '/Users/gagangoyal/workspace/scrapyspiders/stores_crawler/imagesscrap'
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html
